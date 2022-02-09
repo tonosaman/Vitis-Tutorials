@@ -47,6 +47,10 @@ In regards of software setup, we will inherit what KV260 BSP provides, e.g. the 
 
 Kria SOM has some ease-of-use designs for application developers. It provides software-like development experience on FPGA and SoC, such as real time reloading applications without rebooting the system. In order to allow updating PL design without rebooting Linux, it boots Linux from ARM Cortex-A53 and loads FPGA bitstream using Linux. To ensure the board can always boot successfully and prevent the board get into brick status by accidental mistakes, Kria SOM boot flow forces to boot Linux from QSPI mode and the boot firmware in QSPI is read only. Linux will mount rootfs in the SD card. User can update the rootfs in the SD Card.
 
+- システムを再起動することなくアプリを即座にリロード可能
+- Linuxを再起動することなくPLデザインの更新が可能。PLとは独立したARMコアで走るLinux上からPLにbitstreamを流し込める
+- 起動シーケンスをbrickしてしまってブート不可になることを避けるための仕組み(A/Bデュアル構成QSPI,readonlyファームウェア,ネットワークリカバリツール)
+
 If you have read the [Platform Creation Introduction Tutorials](../../Introduction), you have known that the Vitis platform and application development can be divided into these steps:
 
 1. Platform hardware creation in Vivado. It exports an XSA file with clock, reset, AXI interface and interrupt signals and properties.
